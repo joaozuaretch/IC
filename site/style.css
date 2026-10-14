@@ -61,3 +61,36 @@ a.row-link .what strong{color:var(--accent)}
 .pager span{color:var(--muted)}
 .what .tags{display:block;margin-top:.3rem;font-size:.9rem;color:var(--muted)}
 .katex{font-size:1.05em}
+
+/* capas dos PDFs (apresentações e trabalhos) */
+.card{display:grid;grid-template-columns:11rem 1fr;gap:.25rem 1.5rem;margin-bottom:1.75rem;align-items:start}
+.capa{display:block;border:1px solid var(--rule);border-radius:.3rem;overflow:hidden;background:var(--accent-bg);
+  transition:border-color .15s ease}
+.capa:hover{border-color:var(--accent)}
+.capa img{display:block;width:100%;aspect-ratio:16/10;object-fit:contain}
+
+/* ilustrações na coluna lateral: só em telas largas */
+.ilustra{display:none}
+.ilustra figure{margin:0}
+.ilustra svg{display:block;width:100%;height:auto;overflow:visible}
+.ilustra figcaption{margin-top:1rem;color:var(--muted);font-size:.88rem;line-height:1.5}
+.ilustra .t{fill:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:15px;text-anchor:middle;dominant-baseline:central}
+.ilustra .ac{fill:var(--accent);font-size:18px}
+.ilustra .pq{font-size:14px}
+.ilustra .mu{fill:var(--muted)}
+.ilustra .l{stroke:var(--muted);stroke-width:1.2;fill:none}
+.ilustra .a{stroke:var(--accent);stroke-width:1.6;fill:none}
+.ilustra .pt circle,.ilustra .ponta{fill:var(--accent)}
+.ilustra .cel{fill:var(--accent);stroke:var(--bg);stroke-width:2}
+
+@media (min-width:70rem){
+  .pagina{display:grid;grid-template-columns:minmax(0,46rem) 16rem;gap:3rem;justify-content:center}
+  .pagina main{margin:0}
+  .ilustra{display:block;position:sticky;top:0;align-self:start;padding-top:11rem}
+}
+
+/* no celular: sem imagens */
+@media (max-width:40rem){
+  .card{grid-template-columns:1fr}
+  .capa{display:none}
+}

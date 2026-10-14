@@ -1,0 +1,12 @@
+<svg viewBox="0 0 260 260" role="img" aria-label="Diagrama de subcorpos do corpo de decomposição de x³ − 2 sobre ℚ">
+  <path class="l" d="M118 42 L70 116 M142 42 L190 116 M70 144 L118 218 M190 144 L142 218"/>
+  <g class="t">
+    <text x="130" y="30">ℚ(∛2, ω)</text>
+    <text x="62" y="130">ℚ(∛2)</text><text x="198" y="130">ℚ(ω)</text>
+    <text x="130" y="230">ℚ</text>
+  </g>
+  <g class="t ac pq">
+    <text x="82" y="72">2</text><text x="178" y="72">3</text>
+    <text x="82" y="188">3</text><text x="178" y="188">2</text>
+  </g>
+</svg>

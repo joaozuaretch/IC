@@ -10,6 +10,7 @@ Os PDFs citados nas notas com [[...]] viram links. Os textos fixos do site
 import html
 import re
 import shutil
+import subprocess
 import unicodedata
 from datetime import date
 from pathlib import Path
@@ -118,6 +119,14 @@ BIBLIOGRAFIA = [
     "<em>Group Theory and Quantum Mechanics</em>.",
     "<em>Introdução à Teoria dos Códigos Corretores de Erros</em>.",
 ]
+
+# Ilustração da coluna lateral de cada página (site/ilustracoes/*.svg) e sua legenda. Só aparece em telas largas.
+ILUSTRACOES = {
+    "inicio": ("galois.svg", "A correspondência de Galois para ℚ(√2, √3): cada subcorpo corresponde a um subgrupo de G = {1, σ, τ, στ}, com σ: √3 ↦ −√3 e τ: √2 ↦ −√2."),
+    "reunioes": ("ciclico.svg", "O grupo cíclico de ordem 6: multiplicar por a gira o hexágono, e a⁶ = 1."),
+    "apresentacoes": ("tabua.svg", "A tábua de (ℤ₄, +): cada elemento aparece uma única vez em cada linha e em cada coluna."),
+    "materiais": ("torre.svg", "O corpo de decomposição de x³ − 2 sobre ℚ, uma extensão de grau 6, com os graus de cada passo."),
+}
 
 # ---------------------------------------------------------------- utilidades
 
@@ -272,11 +281,16 @@ KATEX = """<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.
   onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>"""
 
 
-def pagina(caminho, titulo, conteudo, descricao, atual=None, matematica=False):
+def pagina(caminho, titulo, conteudo, descricao, atual=None, matematica=False, ilustracao=None):
     raiz = "../" * caminho.count("/")
     atributo = ' aria-current="page"'
     nav = "".join(f'<li><a href="{raiz}{href}"{atributo if href == atual else ""}>{nome}</a></li>'
                   for href, nome in PAGINAS)
+    aside = ""
+    if ilustracao:
+        arquivo, legenda = ILUSTRACOES[ilustracao]
+        svg = (RAIZ / "site" / "ilustracoes" / arquivo).read_text(encoding="utf-8").strip()
+        aside = f'<aside class="ilustra" aria-hidden="true"><figure>{svg}<figcaption>{esc(legenda)}</figcaption></figure></aside>'
     titulo_completo = "Iniciação Científica — " + NOME if titulo is None else f"{titulo} — Iniciação Científica"
     doc = f"""<!DOCTYPE html>
 <html lang="pt-BR">
@@ -293,11 +307,14 @@ def pagina(caminho, titulo, conteudo, descricao, atual=None, matematica=False):
 {KATEX if matematica else ""}
 </head>
 <body>
+<div class="pagina">
 <main>
   <ul class="nav">{nav}</ul>
 {conteudo}
   <footer>Iniciação científica de <a href="{SITE_PESSOAL}">{NOME}</a> · <a href="{LATTES}" target="_blank" rel="noopener">Currículo Lattes</a></footer>
 </main>
+{aside}
+</div>
 </body>
 </html>
 """
@@ -320,7 +337,7 @@ def linha_reuniao(r, raiz):
 
 def gera_inicio():
     ultimas = "\n".join(linha_reuniao(r, "") for r in reversed(REUNIOES[-3:]))
-    percurso = "\n".join(linha(q, f"<strong>{esc(t)}</strong><small>{esc(d)}</small>") for q, t, d in PERCURSO)
+    percurso = "\n".join(linha(q, f"<strong>{esc(t)}</strong><small>{esc(d)}</small>") for q, t, d in reversed(PERCURSO))
     sobre = "\n".join(f"<p>{p}</p>" for p in SOBRE)
     conteudo = f"""
   <header>
@@ -354,7 +371,7 @@ def gera_inicio():
 """
     pagina("index.html", None, conteudo,
            f"Iniciação científica de {NOME} em Álgebra Abstrata na UEPG: reuniões, apresentações e materiais.",
-           atual="index.html")
+           atual="index.html", ilustracao="inicio")
 
 
 def gera_reunioes():
@@ -370,7 +387,7 @@ def gera_reunioes():
   {"".join(blocos)}
 """
     pagina("reunioes/index.html", "Reuniões", conteudo, "Registro das reuniões de orientação da iniciação científica.",
-           atual="reunioes/index.html")
+           atual="reunioes/index.html", ilustracao="reunioes")
 
     for i, r in enumerate(REUNIOES):
         raiz = "../"
@@ -391,14 +408,28 @@ def gera_reunioes():
   <nav class="pager">{ant}{prox}</nav>
 """
         pagina(f"reunioes/{r.id}.html", f"Reunião de {data_extenso(r.data)}", conteudo,
-               f"Reunião de orientação de {data_extenso(r.data)}: {r.tema}.", matematica="$" in r.corpo)
+               f"Reunião de orientação de {data_extenso(r.data)}: {r.tema}.", matematica="$" in r.corpo, ilustracao="reunioes")
 
 
 def reunioes_que_usam(nome):
     return [r for r in REUNIOES if nome in r.usados or f"[[{nome}]]" in r.corpo]
 
 
-def linha_arquivo(nome, titulo, descricao, raiz=""):
+def capa(nome, raiz=""):
+    """Gera a imagem da primeira página do PDF (precisa do pdftoppm, do poppler). Devolve a URL ou None."""
+    if not shutil.which("pdftoppm") or not nome.lower().endswith(".pdf"):
+        return None
+    destino = SAIDA / "capas" / Path(slug(nome)).stem
+    destino.parent.mkdir(exist_ok=True)
+    try:
+        subprocess.run(["pdftoppm", "-jpeg", "-jpegopt", "quality=82", "-f", "1", "-l", "1", "-scale-to", "480",
+                        "-singlefile", str(ARQUIVOS[nome]), str(destino)], check=True, capture_output=True)
+    except subprocess.CalledProcessError:
+        return None
+    return f"{raiz}capas/{destino.name}.jpg"
+
+
+def linha_arquivo(nome, titulo, descricao, raiz="", com_capa=False):
     if nome not in ARQUIVOS:
         return ""
     usos = reunioes_que_usam(nome)
@@ -410,23 +441,28 @@ def linha_arquivo(nome, titulo, descricao, raiz=""):
     if nome in FONTES and FONTES[nome] in ARQUIVOS:
         fonte = f' · <a href="{url_arquivo(FONTES[nome], raiz)}">código-fonte LaTeX</a>'
     desc = f"<small>{esc(descricao)}{fonte}</small>" if descricao or fonte else ""
-    return linha("PDF", f'<a href="{url_arquivo(nome, raiz)}" target="_blank" rel="noopener"><strong>{esc(titulo)}</strong></a>{desc}{extra}')
+    corpo = f'<a href="{url_arquivo(nome, raiz)}" target="_blank" rel="noopener"><strong>{esc(titulo)}</strong></a>{desc}{extra}'
+    imagem = capa(nome, raiz) if com_capa else None
+    if not imagem:
+        return linha("PDF", corpo)
+    return (f'<div class="card"><a class="capa" href="{url_arquivo(nome, raiz)}" target="_blank" rel="noopener" tabindex="-1">'
+            f'<img src="{imagem}" alt="Capa de {esc(titulo)}" loading="lazy"></a><p class="what">{corpo}</p></div>')
 
 
 def gera_apresentacoes():
-    linhas = "\n".join(linha_arquivo(n, t, d) for n, (t, d) in APRESENTACOES.items())
+    linhas = "\n".join(linha_arquivo(n, t, d, com_capa=True) for n, (t, d) in APRESENTACOES.items())
     conteudo = f"""
   <h1>Apresentações</h1>
   <p class="lead">Slides que preparei para apresentar nas reuniões, na ordem em que os conteúdos foram estudados.</p>
   {linhas}
 """
     pagina("apresentacoes.html", "Apresentações", conteudo, "Slides das apresentações da iniciação científica.",
-           atual="apresentacoes.html")
+           atual="apresentacoes.html", ilustracao="apresentacoes")
 
 
 def gera_materiais():
     notas = "\n".join(linha_arquivo(n, t, d) for n, (t, d) in NOTAS.items())
-    trabalhos = "\n".join(linha_arquivo(n, t, d) for n, (t, d) in TRABALHOS.items())
+    trabalhos = "\n".join(linha_arquivo(n, t, d, com_capa=True) for n, (t, d) in TRABALHOS.items())
     biblio = "\n".join(f"<li>{b}</li>" for b in BIBLIOGRAFIA)
     conteudo = f"""
   <h1>Materiais</h1>
@@ -442,7 +478,7 @@ def gera_materiais():
   <ul class="toc">{biblio}</ul>
 """
     pagina("materiais.html", "Materiais", conteudo, "Notas, exercícios, trabalhos e bibliografia da iniciação científica.",
-           atual="materiais.html")
+           atual="materiais.html", ilustracao="materiais")
 
 
 def main():
