@@ -8,6 +8,7 @@ Os PDFs citados nas notas com [[...]] viram links. Os textos fixos do site
 (sobre, percurso, bibliografia, descrição dos arquivos) estão logo abaixo.
 """
 import html
+import json
 import re
 import shutil
 import subprocess
@@ -47,60 +48,24 @@ PERCURSO = [
     ("Out 2026", "Teoremas de Sylow", "Os Teoremas de Sylow (Rotman, Advanced Modern Algebra, seção 5.2)."),
 ]
 
-# Tema curto de cada reunião, usado nas listas. Reunião sem tema aqui usa a primeira frase da nota.
-TEMAS = {
-    "2026-02-03": "Correções das propriedades de grupos e subgrupos",
-    "2026-02-26": "Homomorfismos de grupos e núcleo",
-    "2026-03-05": "Teorema de Cayley (início)",
-    "2026-03-19": "Teorema de Cayley, múltiplos e potências",
-    "2026-04-10": "Grupos cíclicos",
-    "2026-04-16": "Classificação dos grupos cíclicos",
-    "2026-05-15": "Exposição de Joao Roseira sobre extensões de anéis",
-    "2026-05-18": "Grupos cíclicos, relações de equivalência e classes laterais",
-    "2026-05-21": "Teorema de Lagrange",
-    "2026-05-28": "Subgrupos normais e Teorema do Homomorfismo",
-    "2026-06-11": "Início do estudo de anéis",
-    "2026-06-18": "Anéis e corpos",
-    "2026-06-25": "Homomorfismos de anéis",
-    "2026-07-06": "Corpo de frações, característica e ideais",
-    "2026-07-27": "Anéis de polinômios e extensões de corpos",
-    "2026-08-19": "Extensões de corpos e Teorema de Kronecker",
-    "2026-08-27": "Teorema de Kronecker e corpos de decomposição",
-}
+# Temas das reuniões, apresentações, notas e trabalhos ficam em conteudo.json, que a página
+# "Adicionar conteúdo" (adicionar.html) também atualiza. A ordem das listas é a de exibição.
+CONTEUDO = json.loads((RAIZ / "conteudo.json").read_text(encoding="utf-8"))
 
-# Arquivos publicados no site: nome do arquivo -> (título, descrição). A ordem é a de exibição.
-APRESENTACOES = {
-    "Grupos__Homomorfismo__Teorema_de_Lagrange.pdf": ("Grupos, Homomorfismo e Teorema de Lagrange", "Grupos e subgrupos, homomorfismos, Teorema de Cayley, grupos cíclicos, classes laterais e Teorema de Lagrange."),
-    "Anéis e Corpos.pdf": ("Anéis e Corpos", "Capítulo 5 de Garcia e Lequain: definições, proposições e demonstrações."),
-    "Corpo_de_Frações_de_um_Anel_de_Integridade.pdf": ("Corpo de Frações e Característica", "Corpo de frações de um anel de integridade e característica de anéis e corpos."),
-    "Ideais_em_um_Anel_Comutativo.pdf": ("Ideais em Anéis Comutativos", "Ideais e ideal gerado, corpos como anéis sem ideais não triviais, interseção e soma de ideais, ideais primos e maximais."),
-    "Anéis_Quocientes.pdf": ("Anéis Quocientes", "O anel quociente A/I de um anel comutativo por um ideal e o Teorema do Homomorfismo para anéis."),
-    "Anéis_de_Polinômios.pdf": ("Anéis de Polinômios", "Polinômios como sequências de coeficientes, adição e multiplicação, grau e o anel R[x], seguindo Rotman."),
-    "Extensões_de_Corpos.pdf": ("Extensões de Corpos", "Quociente de k[x] por um ideal principal, extensões de corpos, Teorema de Kronecker e corpos de decomposição, seguindo Rotman."),
-    "Teoremas_de_Sylow.pdf": ("Os Teoremas de Sylow", "Subgrupos de Sylow e os três Teoremas de Sylow, com aplicações a grupos simples, grupos unitriangulares e grupos de ordem 2p. Rotman, Advanced Modern Algebra, seção 5.2."),
-    "Grupos_Abelianos_Finitos.pdf": ("Grupos Abelianos Finitos", "Somas diretas, grupos abelianos livres, decomposição primária e subgrupos puros, até o Teorema da Base, seguindo Rotman."),
-    "Teorema_de_Bezout.pdf": ("Teorema de Bézout", "O plano projetivo e o Teorema de Bézout sobre o número de pontos de interseção de duas curvas, com o Teorema do hexágono de Pascal."),
-    "Inteiros_Gaussianos.pdf": ("Inteiros Gaussianos", "O anel ℤ[i]: norma, unidades, divisão euclidiana, ℤ[i] como domínio principal, primos gaussianos e o teorema de Fermat sobre somas de dois quadrados."),
-}
+# Tema curto de cada reunião, usado nas listas. Reunião sem tema usa a primeira frase da nota.
+TEMAS = CONTEUDO["temas_das_reunioes"]
+
+
+def tabela(lista):
+    return {d["arquivo"]: (d["titulo"], d.get("descricao", "")) for d in lista}
+
+
+# Arquivos publicados no site: nome do arquivo -> (título, descrição).
+APRESENTACOES = tabela(CONTEUDO["apresentacoes"])
+NOTAS = tabela(CONTEUDO["notas"])
+TRABALHOS = tabela(CONTEUDO["trabalhos"])
 # arquivo-fonte (LaTeX) publicado ao lado de uma apresentação
-FONTES = {"Teoremas_de_Sylow.pdf": "Teoremas_de_Sylow.zip"}
-
-NOTAS = {
-    "Correções_1.pdf": ("Propriedades de um Grupo", "Demonstrações das propriedades de grupos e da proposição sobre subgrupos, com as correções da orientação. Dezembro de 2025."),
-    "Exercícios_Álgebra.pdf": ("Exercícios de Álgebra", "Exercícios resolvidos do livro de Hygino Domingues. Janeiro de 2026."),
-    "Exemplo_Homomorfismo.pdf": ("Exemplo: homomorfismo de grupos", "Um homomorfismo de (Z₃, +) em um grupo de rotações."),
-    "Questão.pdf": ("Relações de equivalência a partir de subgrupos de (Z, +)", "Resposta à pergunta deixada na reunião de 18 de maio."),
-    "2026-05-26-Nota-16-05.pdf": ("Nota de 26 de maio de 2026", "Anotações sobre classes laterais e subgrupos normais."),
-    "Anéis.pdf": ("Anotações sobre Anéis", "Definição de anel e primeiras propriedades. Junho de 2026."),
-    "Apresentaýýo_Banner_ENCPOS_2026.pdf": ("Inverse Limit and Completion", "Anotações de estudo sobre limite inverso, a partir de Lang, Algebra, cap. I, §10."),
-}
-
-TRABALHOS = {
-    "Poster_ENCPOS___UFSC (1).pdf": ("Limite Inverso de Grupos", "Pôster apresentado no III EncPos MTM (UFSC), 2026. Com Joao Vitor Roseira e Giuliano Gadioli La Guardia."),
-    "Apresentação_Teorema_Fundamental_da_Teoria_de_Galois.pdf": ("Teorema Fundamental da Teoria de Galois", "Apresentação no IX SIGMAT (UEPG), 2026, com Joao Roseira. Menção Honrosa."),
-    "Uma_Introdução_à_Teoria_de_Galois___Minicurso.pdf": ("Uma Introdução à Teoria de Galois: material", "Texto do minicurso ministrado com Joao Roseira na UEPG, 2026."),
-    "Introdução_à_Teoria_de_Galois___Slide.pdf": ("Uma Introdução à Teoria de Galois: slides", "Slides do minicurso, IX SIGMAT, 2026."),
-}
+FONTES = {d["arquivo"]: d["fonte"] for d in CONTEUDO["apresentacoes"] if d.get("fonte")}
 
 # Livros não são publicados no site, só citados.
 BIBLIOGRAFIA = [
@@ -293,7 +258,7 @@ KATEX = """<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.
   onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>"""
 
 
-def pagina(caminho, titulo, conteudo, descricao, atual=None, matematica=False, ilustracao=None):
+def pagina(caminho, titulo, conteudo, descricao, atual=None, matematica=False, ilustracao=None, cabecalho=""):
     raiz = "../" * caminho.count("/")
     atributo = ' aria-current="page"'
     nav = "".join(f'<li><a href="{raiz}{href}"{atributo if href == atual else ""}>{nome}</a></li>'
@@ -319,15 +284,15 @@ def pagina(caminho, titulo, conteudo, descricao, atual=None, matematica=False, i
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="icon" href="{raiz}favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{raiz}style.css">
-{KATEX if matematica else ""}
+{KATEX if matematica else ""}{cabecalho}
 </head>
 <body>
-<div class="pagina">
+<div class="pagina{" com-ilustra" if ilustracao else ""}">
 {esquerda}
 <main>
   <ul class="nav">{nav}</ul>
 {conteudo}
-  <footer>Iniciação científica de <a href="{SITE_PESSOAL}">{NOME}</a> · <a href="{LATTES}" target="_blank" rel="noopener">Currículo Lattes</a></footer>
+  <footer>Iniciação científica de <a href="{SITE_PESSOAL}">{NOME}</a> · <a href="{LATTES}" target="_blank" rel="noopener">Currículo Lattes</a> · <a href="{raiz}adicionar.html">Adicionar conteúdo</a></footer>
 </main>
 {direita}
 </div>
@@ -497,11 +462,79 @@ def gera_materiais():
            atual="materiais.html", ilustracao="materiais")
 
 
+def gera_adicionar():
+    conteudo = """
+  <h1>Adicionar conteúdo</h1>
+  <p class="lead">Envia uma reunião ou um PDF direto para o repositório. O site é atualizado sozinho em cerca de um minuto.</p>
+
+  <section id="configurar" hidden>
+    <h2>Configurar o acesso</h2>
+    <p>Na primeira vez neste navegador, cole um token do GitHub que possa gravar no repositório e escolha uma senha. O token fica guardado só neste navegador, cifrado com a senha; nas próximas vezes basta a senha.</p>
+    <ol class="toc">
+      <li>Abra <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
+      <li>Em <em>Repository access</em>, escolha <em>Only select repositories</em> e marque <strong>IC</strong>.</li>
+      <li>Em <em>Permissions → Repository permissions</em>, dê <strong>Contents: Read and write</strong>.</li>
+      <li>Gere o token e cole abaixo.</li>
+    </ol>
+    <form id="form-configurar" class="form">
+      <label>Token do GitHub<input id="token" type="password" autocomplete="off" required></label>
+      <label>Senha<input id="nova-senha" type="password" autocomplete="new-password" minlength="6" required></label>
+      <label>Repita a senha<input id="confirma-senha" type="password" autocomplete="new-password" required></label>
+      <button type="submit">Salvar e entrar</button>
+    </form>
+  </section>
+
+  <section id="entrar" hidden>
+    <h2>Entrar</h2>
+    <form id="form-entrar" class="form">
+      <label>Senha<input id="senha" type="password" autocomplete="current-password" required autofocus></label>
+      <div class="acoes"><button type="submit">Entrar</button><button type="button" class="secundario esquecer">Trocar token</button></div>
+    </form>
+  </section>
+
+  <section id="painel" hidden>
+    <form id="formulario" class="form">
+      <fieldset class="tipos">
+        <legend>O que você quer adicionar?</legend>
+        <label><input type="radio" name="tipo" value="reuniao" checked> Reunião</label>
+        <label><input type="radio" name="tipo" value="apresentacao"> Apresentação</label>
+        <label><input type="radio" name="tipo" value="nota"> Nota ou exercício</label>
+        <label><input type="radio" name="tipo" value="trabalho"> Trabalho ou evento</label>
+      </fieldset>
+
+      <div data-tipo="reuniao">
+        <label>Data<input id="data" type="date"></label>
+        <label>Tema <small>(aparece nas listas)</small><input id="tema" type="text" placeholder="Ex.: Teoremas de Sylow"></label>
+        <label>O que aconteceu na reunião <small>(aceita **negrito**, listas com -, títulos com ### e fórmulas em $...$)</small>
+          <textarea id="texto" rows="12"></textarea></label>
+        <label>Anotações em PDF <small>(opcional)</small><input id="anotacoes" type="file" accept="application/pdf"></label>
+        <fieldset><legend>Materiais usados</legend><div id="materiais" class="checks"></div>
+          <label>Outros <small>(um por linha, por exemplo um livro)</small><textarea id="outros" rows="3"></textarea></label>
+        </fieldset>
+      </div>
+
+      <div data-tipo="apresentacao nota trabalho" hidden>
+        <label>PDF<input id="pdf" type="file" accept="application/pdf"></label>
+        <label>Título<input id="titulo" type="text"></label>
+        <label>Descrição<textarea id="descricao" rows="3"></textarea></label>
+        <label data-tipo="apresentacao" hidden>Código-fonte LaTeX em .zip <small>(opcional)</small><input id="fonte" type="file" accept=".zip"></label>
+      </div>
+
+      <div class="acoes"><button id="enviar" type="submit">Enviar</button><button type="button" class="secundario esquecer">Trocar token</button></div>
+    </form>
+  </section>
+
+  <p id="status" class="status" role="status"></p>
+"""
+    pagina("adicionar.html", "Adicionar conteúdo", conteudo, "Adicionar conteúdo ao site da iniciação científica.",
+           cabecalho='<meta name="robots" content="noindex">\n<script defer src="adicionar.js"></script>')
+
+
 def main():
     if SAIDA.exists():
         shutil.rmtree(SAIDA)
     SAIDA.mkdir()
-    for nome in ("style.css", "favicon.svg"):
+    for nome in ("style.css", "favicon.svg", "adicionar.js"):
         shutil.copy(RAIZ / "site" / nome, SAIDA / nome)
     (SAIDA / ".nojekyll").touch()
     (SAIDA / "arquivos").mkdir()
@@ -511,6 +544,7 @@ def main():
     gera_reunioes()
     gera_apresentacoes()
     gera_materiais()
+    gera_adicionar()
     print(f"{len(REUNIOES)} reuniões, {len(ARQUIVOS)} arquivos -> {SAIDA}")
 
 

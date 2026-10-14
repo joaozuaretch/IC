@@ -5,7 +5,9 @@ O site é gerado a partir destas pastas e publicado no GitHub Pages a cada push 
 
 - `Reuniões/` — uma nota `.md` por reunião (formato do Obsidian, com `[[links]]` e fórmulas em `$...$`).
 - `Apresentações/`, `PDF's de conteúdo/` — PDFs que aparecem no site.
-- `build.py` — gera o site em `_site/`; os textos fixos (percurso, temas das reuniões, descrição dos PDFs, bibliografia) ficam no topo dele.
+- `conteudo.json` — temas das reuniões e título/descrição de cada apresentação, nota e trabalho (a ordem é a de exibição).
+- `build.py` — gera o site em `_site/`; o percurso e a bibliografia ficam no topo dele.
+- `adicionar.html` (no site) — formulário para adicionar reuniões e PDFs pelo navegador. Grava direto na `main` com um token do GitHub guardado no navegador, cifrado com uma senha.
 - `site/` — estilo, ícone e as ilustrações (SVG) da coluna lateral.
 - As capas das apresentações são geradas da primeira página de cada PDF (precisa do `pdftoppm`, do poppler).
 
