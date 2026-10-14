@@ -1,0 +1,12 @@
+<svg viewBox="0 0 240 640" role="img" aria-label="Torre de extensões para o corpo de decomposição de x³ − 2">
+<path class="l" d="M130.0 584.0 L130.0 321.7 M130.0 289.7 L130.0 136.0"/>
+<text class="t" x="130.0" y="600.0">ℚ</text>
+<text class="t" x="130.0" y="305.7">ℚ(∛2)</text>
+<text class="t" x="130.0" y="120.0">ℚ(∛2, ω)</text>
+<text class="t ac pq" x="150.0" y="452.8">3</text>
+<text class="t ac pq" x="150.0" y="212.8">2</text>
+<text class="t mu pq" x="22.0" y="600.0">1</text>
+<text class="t mu pq" x="22.0" y="305.7">3</text>
+<text class="t mu pq" x="22.0" y="120.0">6</text>
+<text class="t mu pq" x="22.0" y="90.0">grau</text>
+</svg>

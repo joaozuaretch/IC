@@ -1,0 +1,11 @@
+<svg viewBox="0 0 240 640" role="img" aria-label="Reticulado de subgrupos de S3">
+<path class="l" d="M124.9 52.1 L200.1 237.9 M116.8 52.6 L33.2 377.4 M118.7 52.9 L86.3 377.1 M120.7 53.0 L139.3 377.0 M201.9 262.6 L123.1 587.4 M35.1 401.9 L114.9 588.1 M87.1 402.8 L117.9 587.2 M138.8 402.9 L121.2 587.1"/>
+<text class="t" x="120.0" y="40.0">S₃</text>
+<text class="t" x="205.0" y="250.0">A₃</text>
+<text class="t pq" x="30.0" y="390.0">⟨(12)⟩</text>
+<text class="t pq" x="85.0" y="390.0">⟨(13)⟩</text>
+<text class="t pq" x="140.0" y="390.0">⟨(23)⟩</text>
+<text class="t" x="120.0" y="600.0">{e}</text>
+<text class="t ac pq" x="205.0" y="282.0">Sylow-3</text>
+<text class="t ac pq" x="85.0" y="422.0">Sylow-2</text>
+</svg>
