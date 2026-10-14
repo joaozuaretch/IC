@@ -1,0 +1,138 @@
+{
+  "temas_das_reunioes": {
+    "2026-02-03": "Correções das propriedades de grupos e subgrupos",
+    "2026-02-26": "Homomorfismos de grupos e núcleo",
+    "2026-03-05": "Teorema de Cayley (início)",
+    "2026-03-19": "Teorema de Cayley, múltiplos e potências",
+    "2026-04-10": "Grupos cíclicos",
+    "2026-04-16": "Classificação dos grupos cíclicos",
+    "2026-05-15": "Exposição de Joao Roseira sobre extensões de anéis",
+    "2026-05-18": "Grupos cíclicos, relações de equivalência e classes laterais",
+    "2026-05-21": "Teorema de Lagrange",
+    "2026-05-28": "Subgrupos normais e Teorema do Homomorfismo",
+    "2026-06-11": "Início do estudo de anéis",
+    "2026-06-18": "Anéis e corpos",
+    "2026-06-25": "Homomorfismos de anéis",
+    "2026-07-06": "Corpo de frações, característica e ideais",
+    "2026-07-27": "Anéis de polinômios e extensões de corpos",
+    "2026-08-19": "Extensões de corpos e Teorema de Kronecker",
+    "2026-08-27": "Teorema de Kronecker e corpos de decomposição"
+  },
+  "apresentacoes": [
+    {
+      "arquivo": "Grupos__Homomorfismo__Teorema_de_Lagrange.pdf",
+      "titulo": "Grupos, Homomorfismo e Teorema de Lagrange",
+      "descricao": "Grupos e subgrupos, homomorfismos, Teorema de Cayley, grupos cíclicos, classes laterais e Teorema de Lagrange."
+    },
+    {
+      "arquivo": "Anéis e Corpos.pdf",
+      "titulo": "Anéis e Corpos",
+      "descricao": "Capítulo 5 de Garcia e Lequain: definições, proposições e demonstrações."
+    },
+    {
+      "arquivo": "Corpo_de_Frações_de_um_Anel_de_Integridade.pdf",
+      "titulo": "Corpo de Frações e Característica",
+      "descricao": "Corpo de frações de um anel de integridade e característica de anéis e corpos."
+    },
+    {
+      "arquivo": "Ideais_em_um_Anel_Comutativo.pdf",
+      "titulo": "Ideais em Anéis Comutativos",
+      "descricao": "Ideais e ideal gerado, corpos como anéis sem ideais não triviais, interseção e soma de ideais, ideais primos e maximais."
+    },
+    {
+      "arquivo": "Anéis_Quocientes.pdf",
+      "titulo": "Anéis Quocientes",
+      "descricao": "O anel quociente A/I de um anel comutativo por um ideal e o Teorema do Homomorfismo para anéis."
+    },
+    {
+      "arquivo": "Anéis_de_Polinômios.pdf",
+      "titulo": "Anéis de Polinômios",
+      "descricao": "Polinômios como sequências de coeficientes, adição e multiplicação, grau e o anel R[x], seguindo Rotman."
+    },
+    {
+      "arquivo": "Extensões_de_Corpos.pdf",
+      "titulo": "Extensões de Corpos",
+      "descricao": "Quociente de k[x] por um ideal principal, extensões de corpos, Teorema de Kronecker e corpos de decomposição, seguindo Rotman."
+    },
+    {
+      "arquivo": "Teoremas_de_Sylow.pdf",
+      "titulo": "Os Teoremas de Sylow",
+      "descricao": "Subgrupos de Sylow e os três Teoremas de Sylow, com aplicações a grupos simples, grupos unitriangulares e grupos de ordem 2p. Rotman, Advanced Modern Algebra, seção 5.2.",
+      "fonte": "Teoremas_de_Sylow.zip"
+    },
+    {
+      "arquivo": "Grupos_Abelianos_Finitos.pdf",
+      "titulo": "Grupos Abelianos Finitos",
+      "descricao": "Somas diretas, grupos abelianos livres, decomposição primária e subgrupos puros, até o Teorema da Base, seguindo Rotman."
+    },
+    {
+      "arquivo": "Teorema_de_Bezout.pdf",
+      "titulo": "Teorema de Bézout",
+      "descricao": "O plano projetivo e o Teorema de Bézout sobre o número de pontos de interseção de duas curvas, com o Teorema do hexágono de Pascal."
+    },
+    {
+      "arquivo": "Inteiros_Gaussianos.pdf",
+      "titulo": "Inteiros Gaussianos",
+      "descricao": "O anel ℤ[i]: norma, unidades, divisão euclidiana, ℤ[i] como domínio principal, primos gaussianos e o teorema de Fermat sobre somas de dois quadrados."
+    }
+  ],
+  "notas": [
+    {
+      "arquivo": "Correções_1.pdf",
+      "titulo": "Propriedades de um Grupo",
+      "descricao": "Demonstrações das propriedades de grupos e da proposição sobre subgrupos, com as correções da orientação. Dezembro de 2025."
+    },
+    {
+      "arquivo": "Exercícios_Álgebra.pdf",
+      "titulo": "Exercícios de Álgebra",
+      "descricao": "Exercícios resolvidos do livro de Hygino Domingues. Janeiro de 2026."
+    },
+    {
+      "arquivo": "Exemplo_Homomorfismo.pdf",
+      "titulo": "Exemplo: homomorfismo de grupos",
+      "descricao": "Um homomorfismo de (Z₃, +) em um grupo de rotações."
+    },
+    {
+      "arquivo": "Questão.pdf",
+      "titulo": "Relações de equivalência a partir de subgrupos de (Z, +)",
+      "descricao": "Resposta à pergunta deixada na reunião de 18 de maio."
+    },
+    {
+      "arquivo": "2026-05-26-Nota-16-05.pdf",
+      "titulo": "Nota de 26 de maio de 2026",
+      "descricao": "Anotações sobre classes laterais e subgrupos normais."
+    },
+    {
+      "arquivo": "Anéis.pdf",
+      "titulo": "Anotações sobre Anéis",
+      "descricao": "Definição de anel e primeiras propriedades. Junho de 2026."
+    },
+    {
+      "arquivo": "Apresentaýýo_Banner_ENCPOS_2026.pdf",
+      "titulo": "Inverse Limit and Completion",
+      "descricao": "Anotações de estudo sobre limite inverso, a partir de Lang, Algebra, cap. I, §10."
+    }
+  ],
+  "trabalhos": [
+    {
+      "arquivo": "Poster_ENCPOS___UFSC (1).pdf",
+      "titulo": "Limite Inverso de Grupos",
+      "descricao": "Pôster apresentado no III EncPos MTM (UFSC), 2026. Com Joao Vitor Roseira e Giuliano Gadioli La Guardia."
+    },
+    {
+      "arquivo": "Apresentação_Teorema_Fundamental_da_Teoria_de_Galois.pdf",
+      "titulo": "Teorema Fundamental da Teoria de Galois",
+      "descricao": "Apresentação no IX SIGMAT (UEPG), 2026, com Joao Roseira. Menção Honrosa."
+    },
+    {
+      "arquivo": "Uma_Introdução_à_Teoria_de_Galois___Minicurso.pdf",
+      "titulo": "Uma Introdução à Teoria de Galois: material",
+      "descricao": "Texto do minicurso ministrado com Joao Roseira na UEPG, 2026."
+    },
+    {
+      "arquivo": "Introdução_à_Teoria_de_Galois___Slide.pdf",
+      "titulo": "Uma Introdução à Teoria de Galois: slides",
+      "descricao": "Slides do minicurso, IX SIGMAT, 2026."
+    }
+  ]
+}
