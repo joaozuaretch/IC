@@ -292,7 +292,7 @@ def pagina(caminho, titulo, conteudo, descricao, atual=None, matematica=False, i
 <main>
   <ul class="nav">{nav}</ul>
 {conteudo}
-  <footer>Iniciação científica de <a href="{SITE_PESSOAL}">{NOME}</a> · <a href="{LATTES}" target="_blank" rel="noopener">Currículo Lattes</a> · <a href="{raiz}adicionar.html">Adicionar conteúdo</a></footer>
+  <footer>Iniciação científica de <a href="{SITE_PESSOAL}" target="_blank" rel="noopener">{NOME}</a> · <a href="{LATTES}" target="_blank" rel="noopener">Currículo Lattes</a> · <a href="{raiz}adicionar.html">Adicionar conteúdo</a></footer>
 </main>
 {direita}
 </div>
