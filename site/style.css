@@ -1,0 +1,63 @@
+:root{
+  color-scheme:dark;
+  --bg:#12161c; --ink:#e6eaf0; --muted:#9aa5b3; --rule:#2b3440; --accent:#7fb0f0; --accent-bg:#1a2433;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;line-height:1.65}
+main{max-width:46rem;margin:0 auto;padding:4rem 1.5rem 5rem}
+a{color:var(--accent);text-underline-offset:.2em}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+h1{font-size:clamp(2.2rem,6vw,3.2rem);line-height:1.1;margin:0 0 .5rem;font-weight:600;letter-spacing:-.01em}
+.lead{font-size:1.2rem;color:var(--muted);margin:0 0 1.25rem}
+.links{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin:0 0 3rem;padding:0;list-style:none}
+h2{font-size:1.35rem;margin:3rem 0 1rem;padding-bottom:.4rem;border-bottom:1px solid var(--rule);font-weight:600}
+p{margin:0 0 1rem;max-width:40rem}
+.row{display:grid;grid-template-columns:7rem 1fr;gap:.25rem 1.5rem;margin-bottom:1.25rem}
+.when{color:var(--muted);font-size:.95rem}
+.what{margin:0}
+.what strong{font-weight:600}
+.what small{display:block;color:var(--muted);font-size:.95rem;margin-top:.15rem}
+footer{margin-top:4rem;color:var(--muted);font-size:.9rem}
+@media (max-width:36rem){.row{grid-template-columns:1fr}}
+
+/* linha clicável, que leva a uma página de detalhe */
+a.row-link{display:block;text-decoration:none;color:inherit;border-radius:.4rem;
+  margin:0 -.6rem 1.25rem;padding:.4rem .6rem;transition:background-color .15s ease}
+a.row-link:hover,a.row-link:focus-visible{background:var(--accent-bg)}
+a.row-link .row{margin-bottom:0}
+a.row-link .what strong{color:var(--accent)}
+
+/* páginas de detalhe */
+.back{display:inline-block;margin-bottom:2rem;font-size:.95rem;color:var(--muted)}
+.back:hover{color:var(--accent)}
+.meta{color:var(--muted);font-size:1.05rem;margin:0 0 2rem}
+.meta strong{color:var(--ink);font-weight:600}
+.doc-link{display:inline-flex;align-items:center;gap:.5rem;margin:1rem 0 2rem;padding:.6rem 1.1rem;
+  border:1px solid var(--rule);border-radius:.4rem;text-decoration:none;font-size:1rem}
+.docs{display:flex;flex-wrap:wrap;gap:.75rem;margin:1rem 0 2rem}
+.docs .doc-link{margin:0}
+.doc-link:hover{border-color:var(--accent);background:var(--accent-bg)}
+.toc{margin:0 0 1rem;padding-left:1.25rem}
+.toc li{margin-bottom:.35rem}
+.keywords{color:var(--muted);font-size:.95rem}
+
+/* navegação entre as páginas do site da IC */
+.nav{display:flex;flex-wrap:wrap;gap:.35rem 1.5rem;margin:0 0 3rem;padding:0 0 .9rem;list-style:none;
+  border-bottom:1px solid var(--rule);font-size:1rem}
+.nav a{color:var(--muted);text-decoration:none}
+.nav a:hover{color:var(--accent)}
+.nav a[aria-current="page"]{color:var(--ink);font-weight:600}
+
+/* texto das reuniões */
+.note h3{font-size:1.1rem;margin:2rem 0 .6rem;font-weight:600}
+.note ul{margin:0 0 1rem;padding-left:1.25rem;max-width:40rem}
+.note li{margin-bottom:.35rem}
+.note blockquote{margin:0 0 1rem;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--rule);color:var(--muted);font-style:italic}
+.ref{color:var(--muted)}
+.pager{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:3rem;
+  padding-top:1rem;border-top:1px solid var(--rule);font-size:.95rem}
+.pager span{color:var(--muted)}
+.what .tags{display:block;margin-top:.3rem;font-size:.9rem;color:var(--muted)}
+.katex{font-size:1.05em}
