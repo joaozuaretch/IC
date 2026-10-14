@@ -1,15 +1,15 @@
-<svg viewBox="0 0 260 420" role="img" aria-label="Correspondência de Galois entre os subcorpos de ℚ(√2, √3) e os subgrupos do seu grupo de Galois">
-  <g class="l">
-    <path d="M130 32 L45 88 M130 32 L130 88 M130 32 L215 88 M45 112 L130 168 M130 112 L130 168 M215 112 L130 168"/>
-    <path d="M130 252 L45 308 M130 252 L130 308 M130 252 L215 308 M45 332 L130 388 M130 332 L130 388 M215 332 L130 388"/>
-  </g>
-  <g class="t">
-    <text x="130" y="20">ℚ(√2, √3)</text>
-    <text x="45" y="100">ℚ(√2)</text><text x="130" y="100">ℚ(√3)</text><text x="215" y="100">ℚ(√6)</text>
-    <text x="130" y="180">ℚ</text>
-    <text x="130" y="240">{1}</text>
-    <text x="45" y="320">⟨σ⟩</text><text x="130" y="320">⟨τ⟩</text><text x="215" y="320">⟨στ⟩</text>
-    <text x="130" y="400">G</text>
-  </g>
-  <text class="t ac" x="130" y="210">↕</text>
+<svg viewBox="0 0 240 640" role="img" aria-label="Correspondência de Galois para ℚ(√2, √3)">
+<path class="l" d="M112.4 50.5 L47.6 139.5 M120.0 53.0 L120.0 137.0 M127.6 50.5 L192.4 139.5 M47.6 160.5 L112.4 249.5 M120.0 163.0 L120.0 247.0 M192.4 160.5 L127.6 249.5"/>
+<path class="l" d="M112.4 390.5 L47.6 479.5 M120.0 393.0 L120.0 477.0 M127.6 390.5 L192.4 479.5 M47.6 500.5 L112.4 589.5 M120.0 503.0 L120.0 587.0 M192.4 500.5 L127.6 589.5"/>
+<text class="t" x="120.0" y="40.0">ℚ(√2, √3)</text>
+<text class="t" x="40.0" y="150.0">ℚ(√2)</text>
+<text class="t" x="120.0" y="150.0">ℚ(√3)</text>
+<text class="t" x="200.0" y="150.0">ℚ(√6)</text>
+<text class="t" x="120.0" y="260.0">ℚ</text>
+<text class="t" x="120.0" y="380.0">{1}</text>
+<text class="t" x="40.0" y="490.0">⟨σ⟩</text>
+<text class="t" x="120.0" y="490.0">⟨τ⟩</text>
+<text class="t" x="200.0" y="490.0">⟨στ⟩</text>
+<text class="t" x="120.0" y="600.0">G</text>
+<text class="t ac" x="120.0" y="320.0">↕</text>
 </svg>

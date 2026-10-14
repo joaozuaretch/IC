@@ -73,14 +73,14 @@ APRESENTACOES = {
     "Grupos__Homomorfismo__Teorema_de_Lagrange.pdf": ("Grupos, Homomorfismo e Teorema de Lagrange", "Grupos e subgrupos, homomorfismos, Teorema de Cayley, grupos cíclicos, classes laterais e Teorema de Lagrange."),
     "Anéis e Corpos.pdf": ("Anéis e Corpos", "Capítulo 5 de Garcia e Lequain: definições, proposições e demonstrações."),
     "Corpo_de_Frações_de_um_Anel_de_Integridade.pdf": ("Corpo de Frações e Característica", "Corpo de frações de um anel de integridade e característica de anéis e corpos."),
-    "Ideais_em_um_Anel_Comutativo.pdf": ("Ideais em Anéis Comutativos", ""),
-    "Anéis_Quocientes.pdf": ("Anéis Quocientes", ""),
-    "Anéis_de_Polinômios.pdf": ("Anéis de Polinômios", ""),
-    "Extensões_de_Corpos.pdf": ("Extensões de Corpos", "Teorema de Kronecker e corpos de decomposição."),
-    "Teoremas_de_Sylow.pdf": ("Os Teoremas de Sylow", "Rotman, Advanced Modern Algebra, seção 5.2."),
-    "Grupos_Abelianos_Finitos.pdf": ("Grupos Abelianos Finitos", ""),
-    "Teorema_de_Bezout.pdf": ("Teorema de Bézout", ""),
-    "Inteiros_Gaussianos.pdf": ("Inteiros Gaussianos", ""),
+    "Ideais_em_um_Anel_Comutativo.pdf": ("Ideais em Anéis Comutativos", "Ideais e ideal gerado, corpos como anéis sem ideais não triviais, interseção e soma de ideais, ideais primos e maximais."),
+    "Anéis_Quocientes.pdf": ("Anéis Quocientes", "O anel quociente A/I de um anel comutativo por um ideal e o Teorema do Homomorfismo para anéis."),
+    "Anéis_de_Polinômios.pdf": ("Anéis de Polinômios", "Polinômios como sequências de coeficientes, adição e multiplicação, grau e o anel R[x], seguindo Rotman."),
+    "Extensões_de_Corpos.pdf": ("Extensões de Corpos", "Quociente de k[x] por um ideal principal, extensões de corpos, Teorema de Kronecker e corpos de decomposição, seguindo Rotman."),
+    "Teoremas_de_Sylow.pdf": ("Os Teoremas de Sylow", "Subgrupos de Sylow e os três Teoremas de Sylow, com aplicações a grupos simples, grupos unitriangulares e grupos de ordem 2p. Rotman, Advanced Modern Algebra, seção 5.2."),
+    "Grupos_Abelianos_Finitos.pdf": ("Grupos Abelianos Finitos", "Somas diretas, grupos abelianos livres, decomposição primária e subgrupos puros, até o Teorema da Base, seguindo Rotman."),
+    "Teorema_de_Bezout.pdf": ("Teorema de Bézout", "O plano projetivo e o Teorema de Bézout sobre o número de pontos de interseção de duas curvas, com o Teorema do hexágono de Pascal."),
+    "Inteiros_Gaussianos.pdf": ("Inteiros Gaussianos", "O anel ℤ[i]: norma, unidades, divisão euclidiana, ℤ[i] como domínio principal, primos gaussianos e o teorema de Fermat sobre somas de dois quadrados."),
 }
 # arquivo-fonte (LaTeX) publicado ao lado de uma apresentação
 FONTES = {"Teoremas_de_Sylow.pdf": "Teoremas_de_Sylow.zip"}
@@ -122,10 +122,22 @@ BIBLIOGRAFIA = [
 
 # Ilustração da coluna lateral de cada página (site/ilustracoes/*.svg) e sua legenda. Só aparece em telas largas.
 ILUSTRACOES = {
-    "inicio": ("galois.svg", "A correspondência de Galois para ℚ(√2, √3): cada subcorpo corresponde a um subgrupo de G = {1, σ, τ, στ}, com σ: √3 ↦ −√3 e τ: √2 ↦ −√2."),
-    "reunioes": ("ciclico.svg", "O grupo cíclico de ordem 6: multiplicar por a gira o hexágono, e a⁶ = 1."),
-    "apresentacoes": ("tabua.svg", "A tábua de (ℤ₄, +): cada elemento aparece uma única vez em cada linha e em cada coluna."),
-    "materiais": ("torre.svg", "O corpo de decomposição de x³ − 2 sobre ℚ, uma extensão de grau 6, com os graus de cada passo."),
+    "inicio": [
+        ("torre-raizes.svg", "Uma torre de extensões quadráticas: cada passo dobra o grau, até [ℚ(√2, √3, √5) : ℚ] = 8."),
+        ("galois.svg", "A correspondência de Galois para ℚ(√2, √3): cada subcorpo corresponde a um subgrupo de G = {1, σ, τ, στ}, com σ: √3 ↦ −√3 e τ: √2 ↦ −√2."),
+    ],
+    "reunioes": [
+        ("classes.svg", "As classes laterais de 3ℤ em ℤ: três classes disjuntas, de mesmo tamanho, que cobrem todos os inteiros."),
+        ("ciclico.svg", "O grupo cíclico de ordem 6 e seus subgrupos, um para cada divisor de 6."),
+    ],
+    "apresentacoes": [
+        ("tabuas.svg", "Os dois grupos de ordem 4: o cíclico ℤ₄ e o de Klein ℤ₂ × ℤ₂."),
+        ("sylow.svg", "Os subgrupos de S₃: três subgrupos de Sylow de ordem 2 e um único de ordem 3, que é normal."),
+    ],
+    "materiais": [
+        ("torre-cubica.svg", "O corpo de decomposição de x³ − 2 sobre ℚ: um passo de grau 3 e outro de grau 2."),
+        ("reticulado-cubico.svg", "Os subcorpos de ℚ(∛2, ω), na altura do seu grau sobre ℚ: três de grau 3 e um de grau 2."),
+    ],
 }
 
 # ---------------------------------------------------------------- utilidades
@@ -286,11 +298,14 @@ def pagina(caminho, titulo, conteudo, descricao, atual=None, matematica=False, i
     atributo = ' aria-current="page"'
     nav = "".join(f'<li><a href="{raiz}{href}"{atributo if href == atual else ""}>{nome}</a></li>'
                   for href, nome in PAGINAS)
-    aside = ""
+    esquerda = direita = ""
     if ilustracao:
-        arquivo, legenda = ILUSTRACOES[ilustracao]
-        svg = (RAIZ / "site" / "ilustracoes" / arquivo).read_text(encoding="utf-8").strip()
-        aside = f'<aside class="ilustra" aria-hidden="true"><figure>{svg}<figcaption>{esc(legenda)}</figcaption></figure></aside>'
+        figuras = []
+        for lado, (arquivo, legenda) in zip(("esq", "dir"), ILUSTRACOES[ilustracao]):
+            svg = (RAIZ / "site" / "ilustracoes" / arquivo).read_text(encoding="utf-8").strip()
+            figuras.append(f'<aside class="ilustra {lado}" aria-hidden="true"><figure>{svg}'
+                           f'<figcaption>{esc(legenda)}</figcaption></figure></aside>')
+        esquerda, direita = figuras
     titulo_completo = "Iniciação Científica — " + NOME if titulo is None else f"{titulo} — Iniciação Científica"
     doc = f"""<!DOCTYPE html>
 <html lang="pt-BR">
@@ -308,12 +323,13 @@ def pagina(caminho, titulo, conteudo, descricao, atual=None, matematica=False, i
 </head>
 <body>
 <div class="pagina">
+{esquerda}
 <main>
   <ul class="nav">{nav}</ul>
 {conteudo}
   <footer>Iniciação científica de <a href="{SITE_PESSOAL}">{NOME}</a> · <a href="{LATTES}" target="_blank" rel="noopener">Currículo Lattes</a></footer>
 </main>
-{aside}
+{direita}
 </div>
 </body>
 </html>

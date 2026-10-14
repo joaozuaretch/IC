@@ -1,0 +1,9 @@
+<svg viewBox="0 0 250 640" role="img" aria-label="Subcorpos do corpo de decomposição de x³ − 2">
+<path class="l" d="M113.8 132.5 L34.2 293.1 M118.0 133.9 L95.0 291.8 M122.8 133.7 L155.2 292.0 M124.8 133.1 L223.2 401.2 M32.2 319.1 L115.8 586.6 M94.3 319.6 L118.7 586.1 M156.2 319.6 L121.8 586.1 M221.0 426.4 L127.0 587.9"/>
+<text class="t" x="120.0" y="120.0">ℚ(∛2, ω)</text>
+<text class="t pq" x="28.0" y="305.7">ℚ(∛2)</text>
+<text class="t pq" x="93.0" y="305.7">ℚ(ω∛2)</text>
+<text class="t pq" x="158.0" y="305.7">ℚ(ω²∛2)</text>
+<text class="t pq" x="228.0" y="414.3">ℚ(ω)</text>
+<text class="t" x="120.0" y="600.0">ℚ</text>
+</svg>

@@ -1,0 +1,56 @@
+<svg viewBox="0 0 240 600" role="img" aria-label="Tábuas dos dois grupos de ordem 4">
+<text class="t" x="120.0" y="38.0">ℤ₄</text>
+<text class="t mu pq" x="48.0" y="78.0">∗</text>
+<text class="t mu pq" x="84.0" y="78.0">0</text>
+<text class="t mu pq" x="120.0" y="78.0">1</text>
+<text class="t mu pq" x="156.0" y="78.0">2</text>
+<text class="t mu pq" x="192.0" y="78.0">3</text>
+<text class="t mu pq" x="48.0" y="114.0">0</text>
+<rect class="cel" x="66" y="96" width="36" height="36" fill-opacity="0.06"/><text class="t pq" x="84.0" y="114.0">0</text>
+<rect class="cel" x="102" y="96" width="36" height="36" fill-opacity="0.2"/><text class="t pq" x="120.0" y="114.0">1</text>
+<rect class="cel" x="138" y="96" width="36" height="36" fill-opacity="0.36"/><text class="t pq" x="156.0" y="114.0">2</text>
+<rect class="cel" x="174" y="96" width="36" height="36" fill-opacity="0.55"/><text class="t pq" x="192.0" y="114.0">3</text>
+<text class="t mu pq" x="48.0" y="150.0">1</text>
+<rect class="cel" x="66" y="132" width="36" height="36" fill-opacity="0.2"/><text class="t pq" x="84.0" y="150.0">1</text>
+<rect class="cel" x="102" y="132" width="36" height="36" fill-opacity="0.36"/><text class="t pq" x="120.0" y="150.0">2</text>
+<rect class="cel" x="138" y="132" width="36" height="36" fill-opacity="0.55"/><text class="t pq" x="156.0" y="150.0">3</text>
+<rect class="cel" x="174" y="132" width="36" height="36" fill-opacity="0.06"/><text class="t pq" x="192.0" y="150.0">0</text>
+<text class="t mu pq" x="48.0" y="186.0">2</text>
+<rect class="cel" x="66" y="168" width="36" height="36" fill-opacity="0.36"/><text class="t pq" x="84.0" y="186.0">2</text>
+<rect class="cel" x="102" y="168" width="36" height="36" fill-opacity="0.55"/><text class="t pq" x="120.0" y="186.0">3</text>
+<rect class="cel" x="138" y="168" width="36" height="36" fill-opacity="0.06"/><text class="t pq" x="156.0" y="186.0">0</text>
+<rect class="cel" x="174" y="168" width="36" height="36" fill-opacity="0.2"/><text class="t pq" x="192.0" y="186.0">1</text>
+<text class="t mu pq" x="48.0" y="222.0">3</text>
+<rect class="cel" x="66" y="204" width="36" height="36" fill-opacity="0.55"/><text class="t pq" x="84.0" y="222.0">3</text>
+<rect class="cel" x="102" y="204" width="36" height="36" fill-opacity="0.06"/><text class="t pq" x="120.0" y="222.0">0</text>
+<rect class="cel" x="138" y="204" width="36" height="36" fill-opacity="0.2"/><text class="t pq" x="156.0" y="222.0">1</text>
+<rect class="cel" x="174" y="204" width="36" height="36" fill-opacity="0.36"/><text class="t pq" x="192.0" y="222.0">2</text>
+<path class="l" d="M66.0 60.0 L66.0 240.0 M30.0 96.0 L210.0 96.0"/>
+<text class="t" x="120.0" y="358.0">ℤ₂ × ℤ₂</text>
+<text class="t mu pq" x="48.0" y="398.0">∗</text>
+<text class="t mu pq" x="84.0" y="398.0">e</text>
+<text class="t mu pq" x="120.0" y="398.0">a</text>
+<text class="t mu pq" x="156.0" y="398.0">b</text>
+<text class="t mu pq" x="192.0" y="398.0">c</text>
+<text class="t mu pq" x="48.0" y="434.0">e</text>
+<rect class="cel" x="66" y="416" width="36" height="36" fill-opacity="0.06"/><text class="t pq" x="84.0" y="434.0">e</text>
+<rect class="cel" x="102" y="416" width="36" height="36" fill-opacity="0.2"/><text class="t pq" x="120.0" y="434.0">a</text>
+<rect class="cel" x="138" y="416" width="36" height="36" fill-opacity="0.36"/><text class="t pq" x="156.0" y="434.0">b</text>
+<rect class="cel" x="174" y="416" width="36" height="36" fill-opacity="0.55"/><text class="t pq" x="192.0" y="434.0">c</text>
+<text class="t mu pq" x="48.0" y="470.0">a</text>
+<rect class="cel" x="66" y="452" width="36" height="36" fill-opacity="0.2"/><text class="t pq" x="84.0" y="470.0">a</text>
+<rect class="cel" x="102" y="452" width="36" height="36" fill-opacity="0.06"/><text class="t pq" x="120.0" y="470.0">e</text>
+<rect class="cel" x="138" y="452" width="36" height="36" fill-opacity="0.55"/><text class="t pq" x="156.0" y="470.0">c</text>
+<rect class="cel" x="174" y="452" width="36" height="36" fill-opacity="0.36"/><text class="t pq" x="192.0" y="470.0">b</text>
+<text class="t mu pq" x="48.0" y="506.0">b</text>
+<rect class="cel" x="66" y="488" width="36" height="36" fill-opacity="0.36"/><text class="t pq" x="84.0" y="506.0">b</text>
+<rect class="cel" x="102" y="488" width="36" height="36" fill-opacity="0.55"/><text class="t pq" x="120.0" y="506.0">c</text>
+<rect class="cel" x="138" y="488" width="36" height="36" fill-opacity="0.06"/><text class="t pq" x="156.0" y="506.0">e</text>
+<rect class="cel" x="174" y="488" width="36" height="36" fill-opacity="0.2"/><text class="t pq" x="192.0" y="506.0">a</text>
+<text class="t mu pq" x="48.0" y="542.0">c</text>
+<rect class="cel" x="66" y="524" width="36" height="36" fill-opacity="0.55"/><text class="t pq" x="84.0" y="542.0">c</text>
+<rect class="cel" x="102" y="524" width="36" height="36" fill-opacity="0.36"/><text class="t pq" x="120.0" y="542.0">b</text>
+<rect class="cel" x="138" y="524" width="36" height="36" fill-opacity="0.2"/><text class="t pq" x="156.0" y="542.0">a</text>
+<rect class="cel" x="174" y="524" width="36" height="36" fill-opacity="0.06"/><text class="t pq" x="192.0" y="542.0">e</text>
+<path class="l" d="M66.0 380.0 L66.0 560.0 M30.0 416.0 L210.0 416.0"/>
+</svg>
